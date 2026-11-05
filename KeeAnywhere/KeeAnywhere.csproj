@@ -40,32 +40,8 @@
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.Core.3.5.2.5\lib\net45\AWSSDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.S3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.S3.3.5.8\lib\net45\AWSSDK.S3.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="bouncy_castle_hmac_sha_pcl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BouncyCastle-PCL.1.0.0.6\lib\bouncy_castle_hmac_sha_pcl.dll</HintPath>
-    </Reference>
-    <Reference Include="Box.V2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ddda8fe64dde1ac3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Box.V2.3.25.0\lib\net45\Box.V2.dll</HintPath>
-    </Reference>
     <Reference Include="CredentialManagement, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CredentialManagement.1.0.2\lib\net35\CredentialManagement.dll</HintPath>
-    </Reference>
-    <Reference Include="Dropbox.Api, Version=6.6.0.0, Culture=neutral, PublicKeyToken=310f0e82fbb45d01, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dropbox.Api.6.6.0\lib\netstandard2.0\Dropbox.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.Api.Gax, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Api.Gax.3.2.0\lib\net461\Google.Api.Gax.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.Api.Gax.Rest, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Api.Gax.Rest.3.2.0\lib\net461\Google.Api.Gax.Rest.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.dll</HintPath>
@@ -85,12 +61,6 @@
     <Reference Include="Google.Apis.PlatformServices, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Storage.v1, Version=1.49.0.2151, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Storage.v1.1.49.0.2151\lib\net45\Google.Apis.Storage.v1.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.Cloud.Storage.V1, Version=3.4.0.0, Culture=neutral, PublicKeyToken=185c282632e132a0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Cloud.Storage.V1.3.4.0\lib\net461\Google.Cloud.Storage.V1.dll</HintPath>
-    </Reference>
     <Reference Include="IdentityModel, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e7877f4675df049f, processorArchitecture=MSIL">
       <HintPath>..\packages\IdentityModel.4.1.0\lib\net461\IdentityModel.dll</HintPath>
     </Reference>
@@ -101,23 +71,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\KeePass.exe</HintPath>
     </Reference>
-    <Reference Include="Kyrodan.HiDrive, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Kyrodan.HiDriveSDK.0.2.0\lib\portable45-net45+win8+wpa81\Kyrodan.HiDrive.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Storage.Blob, Version=11.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Storage.Blob.11.2.2\lib\net452\Microsoft.Azure.Storage.Blob.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Storage.Common, Version=11.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Storage.Common.11.2.2\lib\net452\Microsoft.Azure.Storage.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Storage.File, Version=11.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Storage.File.11.2.2\lib\net452\Microsoft.Azure.Storage.File.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -125,39 +80,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.Configuration, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Options, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Options.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Graph, Version=3.24.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Graph.3.24.0\lib\net461\Microsoft.Graph.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Graph.Core, Version=1.24.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Graph.Core.1.24.0\lib\net45\Microsoft.Graph.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=2.22.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.22.302111727\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms, Version=2.22.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.22.302111727\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.5.6.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
@@ -355,57 +277,16 @@
     <Compile Include="StorageProviders\AmazonS3\AmazonS3AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StorageProviders\AmazonS3\AmazonS3AccountForm.Designer.cs">
-      <DependentUpon>AmazonS3AccountForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StorageProviders\AmazonS3\AmazonS3Helper.cs" />
-    <Compile Include="StorageProviders\AmazonS3\AmazonS3StorageConfigurator.cs" />
-    <Compile Include="StorageProviders\AmazonS3\AmazonS3StorageProvider.cs" />
-    <Compile Include="StorageProviders\AmazonS3\AmazonS3StringExtensions.cs" />
-    <Compile Include="StorageProviders\Azure\AzureAccountForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StorageProviders\Azure\AzureAccountForm.Designer.cs">
-      <DependentUpon>AzureAccountForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StorageProviders\Azure\AzureBlobStorageProvider.cs" />
-    <Compile Include="StorageProviders\Azure\AzureFileStorageProvider.cs" />
-    <Compile Include="StorageProviders\Azure\AzureResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AzureResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="StorageProviders\Azure\AzureStorageConfigurator.cs" />
-    <Compile Include="StorageProviders\Box\BoxHelper.cs" />
-    <Compile Include="StorageProviders\Box\BoxHttpRequestHandler.cs" />
-    <Compile Include="StorageProviders\Box\BoxStorageConfigurator.cs" />
-    <Compile Include="StorageProviders\Box\BoxStorageProvider.cs" />
-    <Compile Include="StorageProviders\Dropbox\DropboxHelper.cs" />
-    <Compile Include="StorageProviders\Dropbox\DropboxStorageConfigurator.cs" />
-    <Compile Include="StorageProviders\Dropbox\DropboxStorageProvider.cs" />
-    <Compile Include="StorageProviders\GoogleCloudPlatform\GoogleCloudStorageAccountForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StorageProviders\GoogleCloudPlatform\GoogleCloudStorageAccountForm.Designer.cs">
-      <DependentUpon>GoogleCloudStorageAccountForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StorageProviders\GoogleCloudPlatform\GoogleCloudStorageConfigurator.cs" />
-    <Compile Include="StorageProviders\GoogleCloudPlatform\GoogleCloudStorageProvider.cs" />
     <Compile Include="StorageProviders\ProxyProvider.cs" />
     <Compile Include="StorageProviders\GoogleDrive\GoogleDriveHelper.cs" />
     <Compile Include="StorageProviders\GoogleDrive\GoogleDriveHttpClientFactory.cs" />
     <Compile Include="StorageProviders\GoogleDrive\GoogleDriveStorageConfigurator.cs" />
     <Compile Include="StorageProviders\GoogleDrive\GoogleDriveStorageProvider.cs" />
-    <Compile Include="StorageProviders\HiDrive\HiDriveHelper.cs" />
-    <Compile Include="StorageProviders\HiDrive\HiDriveStorageConfigurator.cs" />
-    <Compile Include="StorageProviders\HiDrive\HiDriveStorageProvider.cs" />
     <Compile Include="StorageProviders\IStorageProviderFileOperations.cs" />
     <Compile Include="StorageProviders\IStorageProviderQueryOperations.cs" />
     <Compile Include="StorageProviders\ProxyTools.cs" />
     <Compile Include="StorageProviders\IStorageConfigurator.cs" />
     <Compile Include="StorageProviders\IStorageProvider.cs" />
-    <Compile Include="StorageProviders\OneDrive\OneDriveAuthenticationProvider.cs" />
-    <Compile Include="StorageProviders\OneDrive\OneDriveStorageConfigurator.cs" />
     <Compile Include="StorageProviders\StorageDescriptor.cs" />
     <Compile Include="StorageProviders\StorageProviderExtensions.cs" />
     <Compile Include="StorageProviders\StorageProviderItem.cs" />
@@ -413,9 +294,6 @@
     <Compile Include="StorageProviders\StorageRegistry.cs" />
     <Compile Include="StorageProviders\StorageType.cs" />
     <Compile Include="StorageProviders\StorageUri.cs" />
-    <Compile Include="StorageProviders\OneDrive\OneDriveApiExtensions.cs" />
-    <Compile Include="StorageProviders\OneDrive\OneDriveHelper.cs" />
-    <Compile Include="StorageProviders\OneDrive\OneDriveStorageProvider.cs" />
     <Compile Include="StorageProviders\StorageService.cs" />
     <Compile Include="UIService.cs" />
     <Compile Include="WebRequest\KeeAnywhereWebResponse.cs" />
@@ -450,19 +328,6 @@
       <LastGenOutput>PluginResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="StorageProviders\AmazonS3\AmazonS3AccountForm.resx">
-      <DependentUpon>AmazonS3AccountForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StorageProviders\Azure\AzureAccountForm.resx">
-      <DependentUpon>AzureAccountForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StorageProviders\Azure\AzureResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AzureResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StorageProviders\GoogleCloudPlatform\GoogleCloudStorageAccountForm.resx">
-      <DependentUpon>GoogleCloudStorageAccountForm.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -492,9 +357,6 @@
     <Content Include="Resources\Icon_KeeAnywhere_16x16.ico" />
     <Content Include="Resources\KeeAnywhere_16x16.png" />
     <Content Include="Resources\KeeAnywhere_48x48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\AWSSDK.S3.3.5.8\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

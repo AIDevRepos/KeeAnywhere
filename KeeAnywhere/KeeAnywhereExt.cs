@@ -260,7 +260,6 @@ namespace KeeAnywhere
             var names = new[] {
                 "System.Net.Http.Primitives",
                 "Newtonsoft.Json",
-                "Microsoft.Graph.Core",
                 "Google.Apis",
                 "Google.Apis.Auth",
                 "Google.Apis.Core"
