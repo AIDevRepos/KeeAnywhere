@@ -52,7 +52,7 @@ The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this 
 - Internal assembly and KeePass entry class: `KeeAnywhereGDrive` / `KeeAnywhereGDriveExt` (distinct from upstream `KeeAnywhere` and the LE full variant).
 - Plugin title `KeeAnywhere-GDrive`, assembly/file version `2.1.0.1`, informational version `2.1.0-GDrive.1`.
 - Tools menu, cloud file actions, and settings dialog visibly identify `KeeAnywhere-GDrive`.
-- Each loaded plugin contributes one settings menu entry; when upgrading remove all earlier KeeAnywhere PLGX/DLL copies (including nested folders) from `Plugins`, install exactly one version, clear cache only if stale, and restart. No automatic exclusion of other installed plugins.
+- Each loaded plugin contributes one settings menu entry; when upgrading remove all earlier KeeAnywhere PLGX/DLL copies from the entire KeePass installation directory, install exactly one version, clear cache only if stale, and restart. No automatic exclusion of other installed plugins.
 - GitHub public-source build retains placeholder Google OAuth settings. New packages must receive working OAuth configuration privately before testing Google Drive authentication. Never commit OAuth credentials.
 - Previous known-good packages are unchanged; this distinct-identity build requires new KeePass runtime verification.
 
@@ -65,7 +65,7 @@ The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this 
 - SHA-256: `61C857A034D6AC3EC124E118D4F3179F09CD8C02404E02F9727620E2065A1B21`.
 - Both PLGX source packaging and per-file GZip integrity checked; source preserved from the compiled branch except the original provider OAuth application configuration transferred from the previous working private package. No OAuth credentials committed.
 - **Runtime status:** not yet tested in KeePass 2.62 after this renamed build. Earlier working packages remain the last user-confirmed baselines.
-- Duplicate menu remediation: uninstall/move older PLGX or DLL copies outside `Plugins` (including nested folders), use only one variant at a time; clear plugin cache and restart if necessary.
+- Duplicate menu remediation: move older PLGX or DLL copies outside the entire KeePass installation directory, use only one variant at a time; clear plugin cache and restart if necessary.
 
 ## v2.1.0.2 embedded resources and plugin entry repair (2026-11-05)
 
@@ -84,3 +84,11 @@ The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this 
 - Restored original `KeeAnywhere` internal assembly, namespace, and entry type; retained user-visible edition title and version `2.1.0.2`.
 - The 2.1.0.1 renamed-assembly builds failed in the user's KeePass 2.62 and **must not be used**.
 - Validation scope: Windows C# build + PLGX creation passed, resource manifest check passed, all packaged GZip entries and project metadata parsed successfully. **KeePass 2.62 runtime test of v2.1.0.2 remains pending user confirmation.**
+
+## Installation discovery resolution (2026-11-05)
+
+- **User-confirmed cause of duplicate entries:** old KeeAnywhere PLGX copies were kept **elsewhere inside the KeePass installation directory**, not only under `Plugins`. In this KeePass 2.62 installation they were still discovered and loaded, producing three `KeeAnywhere Settings...` menu items. Restricting cleanup to `Plugins` was insufficient.
+- **User-confirmed resolution:** move all inactive KeeAnywhere PLGX copies **completely outside the KeePass installation tree** (including its root, subfolders, and backup folders), leaving one chosen variant in `Plugins`; restart KeePass. User reported the issue resolved.
+- This duplicate-loading cause is distinct from the genuine v2.1.0.1 resource-manifest failure caused by the renamed DLL. That build remains withdrawn; v2.1.0.2 restores the internal `KeeAnywhere` assembly/entry identity and has successful Windows CI/resource checks.
+- **Validation boundary:** user reported that the duplicate-loading issue is resolved; a separate explicit KeePass 2.62 login/open/save test tied to the exact delivered **v2.1.0.2** hash has not been documented. Do not retroactively mark that specific binary fully tested.
+- Keep variant names `KeeAnywhere-LE` and `KeeAnywhere-GDrive` in UI/version metadata; both variants are alternatives and must not be deployed together.
