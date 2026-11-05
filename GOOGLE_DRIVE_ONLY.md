@@ -38,3 +38,11 @@ Applied the upstream local OAuth callback listener fallback: keep `127.0.0.1` as
 Upstream v2.2.0 changed the OAuth library and other providers' SDKs; **none of those bulk dependency upgrades** were merged. The four Google Drive provider source files do not differ between upstream `v2.1.0` and `master`.
 
 The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this fix. The GitHub build uses placeholder Google OAuth app values and cannot replace the previously working locally configured package without secure OAuth configuration.
+
+### Selective upstream port build (2026-11-05)
+
+- Windows CI run: https://github.com/AIDevRepos/KeeAnywhere/actions/runs/42022778142 — **SUCCESS**.
+- PLGX size: **1,333,474 bytes** (about 1.27 MiB).
+- PLGX SHA-256: `68A0C0832A8A26F552AAA7C5B6B2654FA64BCC1483C47C3BD095FBD09F89733A`.
+- Artifact name: `KeeAnywhere-2.1.0-GoogleDriveOnly-KeePass262`.
+- This CI output still has public-source dummy Google OAuth values; it is **not the same binary** the user confirmed working. Runtime verification of this newly ported build remains pending.
