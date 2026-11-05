@@ -55,3 +55,14 @@ The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this 
 - Each loaded plugin contributes one settings menu entry; when upgrading remove all earlier KeeAnywhere PLGX/DLL copies (including nested folders) from `Plugins`, install exactly one version, clear cache only if stale, and restart. No automatic exclusion of other installed plugins.
 - GitHub public-source build retains placeholder Google OAuth settings. New packages must receive working OAuth configuration privately before testing Google Drive authentication. Never commit OAuth credentials.
 - Previous known-good packages are unchanged; this distinct-identity build requires new KeePass runtime verification.
+
+## v2.1.0.1 named-variant build evidence (2026-11-05)
+
+- Unique KeePass plugin identity: `KeeAnywhere-GDrive`, distinct internal assembly and plugin class.
+- GitHub Windows Release CI: **SUCCESS**, run https://github.com/AIDevRepos/KeeAnywhere/actions/runs/42029927725.
+- Delivered private OAuth-configured test PLGX: `KeeAnywhere-GDrive_2.1.0.1_KeePass-2.62.plgx`.
+- PLGX size: **1,333,628 bytes**; bundled files: **133**.
+- SHA-256: `61C857A034D6AC3EC124E118D4F3179F09CD8C02404E02F9727620E2065A1B21`.
+- Both PLGX source packaging and per-file GZip integrity checked; source preserved from the compiled branch except the original provider OAuth application configuration transferred from the previous working private package. No OAuth credentials committed.
+- **Runtime status:** not yet tested in KeePass 2.62 after this renamed build. Earlier working packages remain the last user-confirmed baselines.
+- Duplicate menu remediation: uninstall/move older PLGX or DLL copies outside `Plugins` (including nested folders), use only one variant at a time; clear plugin cache and restart if necessary.
