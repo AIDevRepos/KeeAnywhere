@@ -1,0 +1,47 @@
+name: KeeAnywhere Lite Full - KeePass 2.62
+on:
+  push:
+    branches: [lite-full-2.1.0-keepass-2.62]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+      - name: Restore dependencies
+        run: nuget restore KeeAnywhere.sln -NonInteractive
+      - name: Provide .NET Framework 4.6.1 reference facades for PlgxTool
+        shell: pwsh
+        run: |
+          nuget install Microsoft.NETFramework.ReferenceAssemblies.net461 -Version 1.0.3 -OutputDirectory "$env:RUNNER_TEMP/net461" -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'Reference package restore failed' }
+          $source = Join-Path $env:RUNNER_TEMP 'net461/Microsoft.NETFramework.ReferenceAssemblies.net461.1.0.3/build/.NETFramework/v4.6.1'
+          $target = Join-Path ${env:ProgramFiles(x86)} 'Reference Assemblies/Microsoft/Framework/.NETFramework/v4.6.1'
+          if (-not (Test-Path (Join-Path $source 'Facades/System.Threading.Tasks.dll'))) { throw 'Missing reference facade in package' }
+          New-Item -ItemType Directory -Force -Path $target | Out-Null
+          Copy-Item (Join-Path $source '*') $target -Recurse -Force
+      - name: Build PLGX
+        run: msbuild KeeAnywhere.sln /p:Configuration=Release /t:Rebuild /m /v:minimal
+      - name: Verify artifact and SHA256
+        shell: pwsh
+        run: |
+          $f = 'KeeAnywhere/bin/Release/KeeAnywhere.plgx'
+          if (-not (Test-Path $f)) { throw 'PLGX missing' }
+          $hash = (Get-FileHash $f -Algorithm SHA256).Hash
+          $size = (Get-Item $f).Length
+          Write-Host "PLGX SHA256: $hash"
+          Write-Host "PLGX bytes: $size"
+          "PLGX SHA256: $hash; bytes: $size" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+      - name: Upload PLGX
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeeAnywhere-Lite-Full-2.1.0-KeePass262
+          path: KeeAnywhere/bin/Release/KeeAnywhere.plgx
+          if-no-files-found: error
