@@ -40,7 +40,7 @@ namespace KeeAnywhereLE
         /// * https://github.com/Kyrodan/KeeAnywhere/issues/141
         /// * https://github.com/Kyrodan/KeeAnywhere/issues/152
         /// </summary>
-        static KeeAnywhereExt()
+        static KeeAnywhereLEExt()
         {
             // Some binding redirection fixes for Google Drive API
             FixDependencyLoading();
