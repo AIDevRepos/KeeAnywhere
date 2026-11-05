@@ -27,6 +27,14 @@ Upstream public `v2.1.0` source deliberately contains **dummy Google OAuth clien
 
 To produce an authenticated package, supply appropriate OAuth application credentials securely at build time (e.g. GitHub Actions Secrets); do not commit credentials to GitHub. The local test binary was prepared separately using settings from the user's previously provided original release file.
 
-## Verification pending
+## User test confirmation (2026-11-05)
 
-KeePass 2.62 runtime load, Google Drive sign-in, opening a test KDBX, modifying and saving the KDBX have **not yet been independently or user verified** for this reduced variant. The previously tested v2.1.0 full plugin must not be treated as evidence of success for this build.
+The user reported that the previously delivered **Google Drive-only 1.27 MiB local test PLGX** works normally with KeePass 2.62. This is user-reported runtime confirmation, not an independently executed test; separate detailed results for sign-in, open, and save were not supplied. The confirmed file is the locally configured test PLGX with SHA-256 `ABA27314B0C38255277531F5FF49FD4CD320826E4448DBDAAE93A17E9838EA0C`.
+
+## Selective upstream fix (pending fresh user runtime test)
+
+Applied the upstream local OAuth callback listener fallback: keep `127.0.0.1` as the first choice and try `localhost` only if binding fails. The older IdentityModel client and its form-post response handling are intentionally unchanged to preserve compatibility.
+
+Upstream v2.2.0 changed the OAuth library and other providers' SDKs; **none of those bulk dependency upgrades** were merged. The four Google Drive provider source files do not differ between upstream `v2.1.0` and `master`.
+
+The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this fix. The GitHub build uses placeholder Google OAuth app values and cannot replace the previously working locally configured package without secure OAuth configuration.
