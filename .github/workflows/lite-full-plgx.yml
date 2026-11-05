@@ -32,7 +32,7 @@ jobs:
       - name: Verify artifact and SHA256
         shell: pwsh
         run: |
-          $f = 'KeeAnywhere/bin/Release/KeeAnywhere.plgx'
+          $f = 'KeeAnywhere/bin/Release/KeeAnywhereLE.plgx'
           if (-not (Test-Path $f)) { throw 'PLGX missing' }
           $hash = (Get-FileHash $f -Algorithm SHA256).Hash
           $size = (Get-Item $f).Length
@@ -42,6 +42,6 @@ jobs:
       - name: Upload PLGX
         uses: actions/upload-artifact@v4
         with:
-          name: KeeAnywhere-Lite-Full-2.1.0-KeePass262
-          path: KeeAnywhere/bin/Release/KeeAnywhere.plgx
+          name: KeeAnywhere-LE-Full-v2.1.0.1-KeePass262
+          path: KeeAnywhere/bin/Release/KeeAnywhereLE.plgx
           if-no-files-found: error

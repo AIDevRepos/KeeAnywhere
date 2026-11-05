@@ -70,7 +70,7 @@ namespace KeeAnywhere.Forms
             this.Icon = PluginResources.Icon_OneDrive_16x16;
 
             BannerFactory.CreateBannerEx(this, m_bannerImage,
-                PluginResources.KeeAnywhere_48x48, "KeeAnywhere Settings",
+                PluginResources.KeeAnywhere_48x48, "KeeAnywhere-LE Settings",
                 "Here you can manage KeeAnywhere's settings.");
 
             InitGeneralTab();

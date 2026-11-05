@@ -56,3 +56,12 @@ Original patched binary: user runtime load reported **PASS**. GitHub branch buil
 - PLGX SHA-256: `A08135114FEDC3B4CDFE2990375516F2F850FF20052D5157A94E3E8E1E585596`.
 - Artifact name: `KeeAnywhere-Lite-Full-2.1.0-KeePass262`.
 - The previous tested 6,838,779-byte full PLGX remains the user-confirmed baseline. GitHub CI output uses placeholder Google OAuth settings and has not been user runtime-tested after these ports.
+
+## Variant identification and menu fix (2026-11-05)
+
+- Internal assembly and KeePass entry class: `KeeAnywhereLE` / `KeeAnywhereLEExt` (distinct from the upstream `KeeAnywhere` and the other LE variant).
+- Plugin title: `KeeAnywhere-LE`; assembly/file version: `2.1.0.1`; informational version: `2.1.0-LE.1`.
+- Tools menu, cloud file actions, and settings dialog visibly identify `KeeAnywhere-LE`.
+- Each plugin instance contributes one Settings item. Three identical Settings items indicate multiple copies loaded. On installation, move **all previous KeeAnywhere PLGX/DLL versions** out of the KeePass `Plugins` folder, including nested folders; install exactly one desired variant, clear Plugin Cache if stale, then restart KeePass. Do not attempt to auto-disable other plugins.
+- New CI artifact retains publicly available placeholder OAuth settings, so it must be prepared with the working application's OAuth configuration before users can test Google Drive authentication. Do not commit OAuth secrets to the public GitHub repository.
+- New named variants require new KeePass 2.62 runtime testing; earlier tested binaries remain independent known-good baselines.
