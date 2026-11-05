@@ -29,6 +29,18 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore KeeAnywhere.sln -NonInteractive
 
+      - name: Provide .NET Framework 4.6.1 reference assemblies for PlgxTool
+        shell: pwsh
+        run: |
+          nuget install Microsoft.NETFramework.ReferenceAssemblies.net461 -Version 1.0.3 -OutputDirectory "$env:RUNNER_TEMP/net461" -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'Reference assembly package restore failed' }
+          $source = Join-Path $env:RUNNER_TEMP 'net461/Microsoft.NETFramework.ReferenceAssemblies.net461.1.0.3/build/.NETFramework/v4.6.1'
+          $target = Join-Path ${env:ProgramFiles(x86)} 'Reference Assemblies/Microsoft/Framework/.NETFramework/v4.6.1'
+          if (-not (Test-Path (Join-Path $source 'Facades/System.Threading.Tasks.dll'))) { throw 'Missing net461 facade in package' }
+          New-Item -ItemType Directory -Force -Path $target | Out-Null
+          Copy-Item -Path (Join-Path $source '*') -Destination $target -Recurse -Force
+          if (-not (Test-Path (Join-Path $target 'Facades/System.Threading.Tasks.dll'))) { throw 'Missing target net461 facade' }
+
       - name: Build Release PLGX
         run: msbuild KeeAnywhere.sln /p:Configuration=Release /t:Rebuild /m /v:minimal
 
