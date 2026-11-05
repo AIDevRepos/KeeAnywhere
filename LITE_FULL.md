@@ -48,3 +48,11 @@ Original patched binary: user runtime load reported **PASS**. GitHub branch buil
 - Dropbox: guard empty/null root paths before indexing the first character (upstream `master` fix).
 - Not ported: OneDrive / Microsoft.Graph 5, Box 5, AWS SDK and cryptography/dependency upgrades, or other API-rewrite changes that require incompatible dependencies. Google Drive provider code was unchanged upstream.
 - Baseline: original working 6,838,779-byte PLGX remains a distinct, unmodified test binary. Fresh source-branch build and KeePass runtime verification needed after these ports; the public CI build still uses placeholder OAuth values.
+
+### Selective upstream port build (2026-11-05)
+
+- Windows CI run: https://github.com/AIDevRepos/KeeAnywhere/actions/runs/42022891756 — **SUCCESS**.
+- PLGX size: **6,838,428 bytes** (about 6.52 MiB).
+- PLGX SHA-256: `A08135114FEDC3B4CDFE2990375516F2F850FF20052D5157A94E3E8E1E585596`.
+- Artifact name: `KeeAnywhere-Lite-Full-2.1.0-KeePass262`.
+- The previous tested 6,838,779-byte full PLGX remains the user-confirmed baseline. GitHub CI output uses placeholder Google OAuth settings and has not been user runtime-tested after these ports.
