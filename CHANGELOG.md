@@ -1,3 +1,11 @@
+## Google Drive-only compatibility variant (2026-11-05, testing)
+
+- Separate branch based on 2.1.0: only Google Drive and restricted Google Drive providers registered; other provider references trimmed.
+- KeePass 2.62 PLGX Analyzer path issue addressed.
+- Windows GitHub Actions build PASS, local PLGX static checks PASS; Google Drive login/open/save in KeePass 2.62 pending user validation.
+- Important: public source builds contain dummy Google OAuth client values; the locally supplied test PLGX retains the original official release OAuth application settings without committing them.
+- Detailed build proof and hashes: `GOOGLE_DRIVE_ONLY.md`.
+
 ## 2.1.0 (2024-06-17)
 
 ### New
