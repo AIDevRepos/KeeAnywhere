@@ -29,10 +29,20 @@ jobs:
           Copy-Item (Join-Path $source '*') $target -Recurse -Force
       - name: Build PLGX
         run: msbuild KeeAnywhere.sln /p:Configuration=Release /t:Rebuild /m /v:minimal
+      - name: Verify expected resource manifest
+        shell: pwsh
+        run: |
+          $dll = 'KeeAnywhere/bin/Release/KeeAnywhere.dll'
+          if (-not (Test-Path $dll)) { throw 'KeeAnywhere.dll missing' }
+          $assembly = [System.Reflection.Assembly]::LoadFrom((Resolve-Path $dll))
+          $names = $assembly.GetManifestResourceNames()
+          if ($names -notcontains 'KeeAnywhere.PluginResources.resources') { throw "Expected resource missing: KeeAnywhere.PluginResources.resources; found $($names -join ', ')" }
+          if ($null -eq (New-Object System.Resources.ResourceManager('KeeAnywhere.PluginResources', $assembly)).GetObject('KeeAnywhere_16x16')) { throw 'Resource icon missing' }
+
       - name: Verify artifact and SHA256
         shell: pwsh
         run: |
-          $f = 'KeeAnywhere/bin/Release/KeeAnywhereLE.plgx'
+          $f = 'KeeAnywhere/bin/Release/KeeAnywhere.plgx'
           if (-not (Test-Path $f)) { throw 'PLGX missing' }
           $hash = (Get-FileHash $f -Algorithm SHA256).Hash
           $size = (Get-Item $f).Length
@@ -42,6 +52,6 @@ jobs:
       - name: Upload PLGX
         uses: actions/upload-artifact@v4
         with:
-          name: KeeAnywhere-LE-Full-v2.1.0.1-KeePass262
-          path: KeeAnywhere/bin/Release/KeeAnywhereLE.plgx
+          name: KeeAnywhere-LE-Full-v2.1.0.2-KeePass262
+          path: KeeAnywhere/bin/Release/KeeAnywhere.plgx
           if-no-files-found: error

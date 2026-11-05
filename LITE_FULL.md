@@ -76,3 +76,11 @@ Original patched binary: user runtime load reported **PASS**. GitHub branch buil
 - Both PLGX source packaging and per-file GZip integrity checked; source preserved from the compiled branch except the original provider OAuth application configuration transferred from the previous working private package. No OAuth credentials committed.
 - **Runtime status:** not yet tested in KeePass 2.62 after this renamed build. Earlier working packages remain the last user-confirmed baselines.
 - Duplicate menu remediation: uninstall/move older PLGX or DLL copies outside `Plugins` (including nested folders), use only one variant at a time; clear plugin cache and restart if necessary.
+
+## v2.1.0.2 embedded resources and plugin entry repair (2026-11-05)
+
+- User reported both `2.1.0.1` variants fail KeePass 2.62 initialization with `MissingManifestResourceException` for `KeeAnywhere.PluginResources.resources`. These faulty binaries are withdrawn from use.
+- Cause: renamed DLL assembly to `KeeAnywhereLE` while strongly typed resource classes and WinForms resources retain the original `KeeAnywhere` manifest prefix.
+- Restored the original known-good identity triplet: `KeeAnywhere.dll`, `namespace KeeAnywhere`, `KeeAnywhereExt`, allowing the original manifest resource name to resolve. No provider or OAuth behavior was changed.
+- Kept distinguishable user-facing identity: `KeeAnywhere-LE` in assembly title, menus and settings; version `2.1.0.2` (informational `2.1.0-LE.2`). Both variants are alternatives and must not be loaded simultaneously.
+- CI now validates presence and basic access of `KeeAnywhere.PluginResources.resources` before upload. Runtime tests on KeePass 2.62 remain required for this build.
