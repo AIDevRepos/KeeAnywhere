@@ -35,20 +35,25 @@ namespace KeeAnywhere.OAuth2
                 ports = Enumerable.Range(49215, 16321);
             }
 
+            // Keep 127.0.0.1 as the first choice, as in v2.1.0.
+            // If the local HTTP listener cannot bind that host, retry localhost.
+            string[] hosts = { "127.0.0.1", "localhost" };
             foreach (var port in ports)
             {
-                redirectUri = CreateRedirectUri(port);
-                listener = new HttpListener();
-                listener.Prefixes.Add(redirectUri);
-                try
+                foreach (var host in hosts)
                 {
-                    listener.Start();
-
-                    return true;
-                }
-                catch
-                {
-                    // nothing to do here -- the listener disposes itself when Start throws
+                    redirectUri = CreateRedirectUri(host, port);
+                    listener = new HttpListener();
+                    listener.Prefixes.Add(redirectUri);
+                    try
+                    {
+                        listener.Start();
+                        return true;
+                    }
+                    catch
+                    {
+                        // Try the alternate loopback host or the next port.
+                    }
                 }
             }
 
@@ -58,9 +63,9 @@ namespace KeeAnywhere.OAuth2
             return false;
         }
 
-        private static string CreateRedirectUri(int port)
+        private static string CreateRedirectUri(string host, int port)
         {
-            return "http://127.0.0.1:" + port + "/";
+            return "http://" + host + ":" + port + "/";
         }
 
         public string RedirectUri

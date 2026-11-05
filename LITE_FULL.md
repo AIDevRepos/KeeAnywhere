@@ -10,7 +10,7 @@
 
 ## Patch and scope
 
-The only functional project change in this branch is removal of the AWS SDK S3 code analyzer entry from `KeeAnywhere/KeeAnywhere.csproj`. KeePass 2.62 refuses the `..\\packages\\AWSSDK.S3.3.5.8\\analyzers\\dotnet\\cs\\AWSSDK.S3.CodeAnalysis.dll` path in a PLGX package. No storage provider source code, public API, or DLL reference was removed.
+The original 2.62 compatibility change removes the AWS SDK S3 code analyzer entry from `KeeAnywhere/KeeAnywhere.csproj`. KeePass 2.62 refuses the `..\\packages\\AWSSDK.S3.3.5.8\\analyzers\\dotnet\\cs\\AWSSDK.S3.CodeAnalysis.dll` path in a PLGX package. Subsequent selected upstream fixes are limited to the OAuth loopback callback fallback and the Dropbox empty-root-path handling; DLL references and the v2.1.0 dependency baseline remain unchanged.
 
 ## Original user-tested binary
 
@@ -41,3 +41,10 @@ Review upstream changes individually. Cherry-pick or port only relevant fixes to
 ## Verification status
 
 Original patched binary: user runtime load reported **PASS**. GitHub branch build and the resulting artifact's OAuth/runtime functionality must be validated separately.
+
+## Selective upstream ports (2026-11-05)
+
+- OAuth callback loopback: try `127.0.0.1` first, and `localhost` only when binding fails. Kept the v2.1.0 IdentityModel options and form-post handling instead of importing incompatible v2.2.0 OAuth API changes.
+- Dropbox: guard empty/null root paths before indexing the first character (upstream `master` fix).
+- Not ported: OneDrive / Microsoft.Graph 5, Box 5, AWS SDK and cryptography/dependency upgrades, or other API-rewrite changes that require incompatible dependencies. Google Drive provider code was unchanged upstream.
+- Baseline: original working 6,838,779-byte PLGX remains a distinct, unmodified test binary. Fresh source-branch build and KeePass runtime verification needed after these ports; the public CI build still uses placeholder OAuth values.
