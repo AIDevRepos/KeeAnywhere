@@ -84,3 +84,13 @@ Original patched binary: user runtime load reported **PASS**. GitHub branch buil
 - Restored the original known-good identity triplet: `KeeAnywhere.dll`, `namespace KeeAnywhere`, `KeeAnywhereExt`, allowing the original manifest resource name to resolve. No provider or OAuth behavior was changed.
 - Kept distinguishable user-facing identity: `KeeAnywhere-LE` in assembly title, menus and settings; version `2.1.0.2` (informational `2.1.0-LE.2`). Both variants are alternatives and must not be loaded simultaneously.
 - CI now validates presence and basic access of `KeeAnywhere.PluginResources.resources` before upload. Runtime tests on KeePass 2.62 remain required for this build.
+
+## v2.1.0.2 validated resource hotfix build (2026-11-05)
+
+- CI build: **PASS**; GitHub Actions run https://github.com/AIDevRepos/KeeAnywhere/actions/runs/42033103822.
+- The CI verifies `KeeAnywhere.PluginResources.resources` exists in `KeeAnywhere.dll` and can be opened as an embedded resource stream.
+- Privately configured test package: `KeeAnywhere-LE_2.1.0.2_KeePass-2.62.plgx`, **6,838,555 bytes**, SHA-256 `201FB1254834A780B699BA81B590FD9EFC1722529EE62EF8190485D02070DFA7`.
+- The source package differs from the public CI package only in the Google Drive OAuth application settings (copied unchanged from the original user-tested official PLGX), plus a regenerated PLGX UUID to bypass old compiled cache. Public source contains no private configuration.
+- Restored original `KeeAnywhere` internal assembly, namespace, and entry type; retained user-visible edition title and version `2.1.0.2`.
+- The 2.1.0.1 renamed-assembly builds failed in the user's KeePass 2.62 and **must not be used**.
+- Validation scope: Windows C# build + PLGX creation passed, resource manifest check passed, all packaged GZip entries and project metadata parsed successfully. **KeePass 2.62 runtime test of v2.1.0.2 remains pending user confirmation.**
