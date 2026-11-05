@@ -46,3 +46,12 @@ The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this 
 - PLGX SHA-256: `68A0C0832A8A26F552AAA7C5B6B2654FA64BCC1483C47C3BD095FBD09F89733A`.
 - Artifact name: `KeeAnywhere-2.1.0-GoogleDriveOnly-KeePass262`.
 - This CI output still has public-source dummy Google OAuth values; it is **not the same binary** the user confirmed working. Runtime verification of this newly ported build remains pending.
+
+## Variant identification and menu fix (2026-11-05)
+
+- Internal assembly and KeePass entry class: `KeeAnywhereGDrive` / `KeeAnywhereGDriveExt` (distinct from upstream `KeeAnywhere` and the LE full variant).
+- Plugin title `KeeAnywhere-GDrive`, assembly/file version `2.1.0.1`, informational version `2.1.0-GDrive.1`.
+- Tools menu, cloud file actions, and settings dialog visibly identify `KeeAnywhere-GDrive`.
+- Each loaded plugin contributes one settings menu entry; when upgrading remove all earlier KeeAnywhere PLGX/DLL copies (including nested folders) from `Plugins`, install exactly one version, clear cache only if stale, and restart. No automatic exclusion of other installed plugins.
+- GitHub public-source build retains placeholder Google OAuth settings. New packages must receive working OAuth configuration privately before testing Google Drive authentication. Never commit OAuth credentials.
+- Previous known-good packages are unchanged; this distinct-identity build requires new KeePass runtime verification.

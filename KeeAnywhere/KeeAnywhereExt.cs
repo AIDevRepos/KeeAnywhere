@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
+using KeeAnywhere;
 using KeeAnywhere.Configuration;
 using KeeAnywhere.Forms;
 using KeeAnywhere.Offline;
@@ -15,13 +16,13 @@ using KeePassLib.Native;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
-namespace KeeAnywhere
+namespace KeeAnywhereGDrive
 {
     /// <summary>
     ///     Plugin for KeePass to allow access to cloud storage providers
     /// </summary>
     /// <remarks>KeePass SDK documentation: http://keepass.info/help/v2_dev/plg_index.html</remarks>
-    public class KeeAnywhereExt : Plugin
+    public class KeeAnywhereGDriveExt : Plugin
     {
         private ConfigurationService _configService;
         private IPluginHost _host;
@@ -93,7 +94,7 @@ namespace KeeAnywhere
                 var openMenu = fileMenu.DropDownItems["m_menuFileOpen"] as ToolStripMenuItem;
                 if (openMenu != null)
                 {
-                    _tsOpenFromCloudDrive = new ToolStripMenuItem("Open from Cloud Drive...",
+                    _tsOpenFromCloudDrive = new ToolStripMenuItem("Open from KeeAnywhere-GDrive...",
                         PluginResources.KeeAnywhere_16x16);
                     _tsOpenFromCloudDrive.Click += OnOpenFromCloudDrive;
                     _tsOpenFromCloudDrive.ShortcutKeys = Keys.Control | Keys.Alt | Keys.O;
@@ -105,12 +106,12 @@ namespace KeeAnywhere
                 {
                     var index = saveMenu.DropDownItems.IndexOfKey("m_menuFileSaveAsSep0");
 
-                    _tsSaveToCloudDrive = new ToolStripMenuItem("Save to Cloud Drive...",
+                    _tsSaveToCloudDrive = new ToolStripMenuItem("Save to KeeAnywhere-GDrive...",
                         PluginResources.KeeAnywhere_16x16);
                     _tsSaveToCloudDrive.Click += OnSaveToCloudDrive;
                     saveMenu.DropDownItems.Insert(index, _tsSaveToCloudDrive);
 
-                    _tsSaveCopyToCloudDrive = new ToolStripMenuItem("Save Copy to Cloud Drive...",
+                    _tsSaveCopyToCloudDrive = new ToolStripMenuItem("Save Copy to KeeAnywhere-GDrive...",
                         PluginResources.KeeAnywhere_16x16);
                     _tsSaveCopyToCloudDrive.Click += OnSaveToCloudDrive;
                     saveMenu.DropDownItems.Add(_tsSaveCopyToCloudDrive);
@@ -132,7 +133,7 @@ namespace KeeAnywhere
             if (t == PluginMenuType.Main)
             {
                 // Add the menu option for configuration under Tools
-                var tsShowSettings = new ToolStripMenuItem("KeeAnywhere Settings...", PluginResources.KeeAnywhere_16x16);
+                var tsShowSettings = new ToolStripMenuItem("KeeAnywhere-GDrive Settings...", PluginResources.KeeAnywhere_16x16);
                 tsShowSettings.Click += OnShowSetting;
 
                 return tsShowSettings;
