@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
-using KeeAnywhere;
 using KeeAnywhere.Configuration;
 using KeeAnywhere.Forms;
 using KeeAnywhere.Offline;
@@ -16,13 +15,13 @@ using KeePassLib.Native;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
-namespace KeeAnywhereGDrive
+namespace KeeAnywhere
 {
     /// <summary>
     ///     Plugin for KeePass to allow access to cloud storage providers
     /// </summary>
     /// <remarks>KeePass SDK documentation: http://keepass.info/help/v2_dev/plg_index.html</remarks>
-    public class KeeAnywhereGDriveExt : Plugin
+    public class KeeAnywhereExt : Plugin
     {
         private ConfigurationService _configService;
         private IPluginHost _host;
@@ -40,7 +39,7 @@ namespace KeeAnywhereGDrive
         /// * https://github.com/Kyrodan/KeeAnywhere/issues/141
         /// * https://github.com/Kyrodan/KeeAnywhere/issues/152
         /// </summary>
-        static KeeAnywhereGDriveExt()
+        static KeeAnywhereExt()
         {
             // Some binding redirection fixes for Google Drive API
             FixDependencyLoading();
