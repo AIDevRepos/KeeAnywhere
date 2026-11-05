@@ -24,6 +24,14 @@ The only functional project change in this branch is removal of the AWS SDK S3 c
 
 GitHub Actions `.github/workflows/lite-full-plgx.yml` builds the PLGX on Windows with NuGet, MSBuild and legacy PlgxTool. Build validation and checksums are generated in the workflow run.
 
+First independent source-branch build (**PASS**, 2026-11-05):
+- Run: https://github.com/AIDevRepos/KeeAnywhere/actions/runs/42020235861
+- PLGX output size: **6,838,306 bytes** (about 6.52 MiB)
+- SHA-256: `E9CAAF665BAE57E961E2BC83FF21D1B4D0785F76C92EEAFEDC7C1B648EBC4EDE`
+- GitHub Actions artifact: `KeeAnywhere-Lite-Full-2.1.0-KeePass262`
+- This output is **not byte-identical** to the earlier working 6,838,779-byte PLGX and has public-source placeholder Google OAuth settings. No new KeePass/Google Drive runtime claim is made.
+
+
 **Google OAuth reproducibility limitation:** The public upstream source includes placeholder OAuth client configuration. The original user-tested PLGX was patched from the official distributed binary, which contained functional application configuration. The GitHub Actions artifact generated from this branch may therefore compile and load but **cannot be assumed to authenticate with Google Drive** until appropriate OAuth configuration is provided securely. Never commit application secrets to this public repository.
 
 ## Upstream updates
