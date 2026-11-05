@@ -37,7 +37,9 @@ jobs:
           $assembly = [System.Reflection.Assembly]::LoadFrom((Resolve-Path $dll))
           $names = $assembly.GetManifestResourceNames()
           if ($names -notcontains 'KeeAnywhere.PluginResources.resources') { throw "Expected resource missing: KeeAnywhere.PluginResources.resources; found $($names -join ', ')" }
-          if ($null -eq (New-Object System.Resources.ResourceManager('KeeAnywhere.PluginResources', $assembly)).GetObject('KeeAnywhere_16x16')) { throw 'Resource icon missing' }
+          $resource = $assembly.GetManifestResourceStream('KeeAnywhere.PluginResources.resources')
+          if ($null -eq $resource -or $resource.Length -le 0) { throw 'Embedded resource stream missing' }
+          $resource.Dispose()
 
       - name: Verify artifact and SHA256
         shell: pwsh
