@@ -1,0 +1,21 @@
+name: Source/fix reuse advisory (nonblocking)
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  source-reuse-hints:
+    name: Prior source/fix reuse hints (advisory)
+    uses: AIDevRepos/DevTools-Center/.github/workflows/org-ci-reuse-advisory.yml@main
+    with:
+      target_repo: ${{ github.repository }}
+    secrets:
+      org_read_token: ${{ secrets.CI_ROUTER_TOKEN }}
