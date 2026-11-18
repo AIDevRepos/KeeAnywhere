@@ -102,3 +102,13 @@ The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this 
 - Bump GDrive edition assembly/file version to `2.1.0.3` (informational `2.1.0-GDrive.3`), keep the original `KeeAnywhere` internal assembly and resource identity; retain the `KeeAnywhere-GDrive` displayed variant name.
 - CI adds a check that all eight DLLs are present in the Release output. The PLGX bundle must also be checked after the build. **KeePass 2.62 login/open/save behavior awaits new user confirmation**; do not transfer prior runtime PASS to the new version.
 - The full Lite branch was not modified because it already includes these dependencies.
+
+### v2.1.0.3 build and validation evidence (2026-11-18)
+
+- Code fix: commit `c32b0624863e3d29cc3ee66cf8c17f8bd74c859d`; CI runtime smoke test: commit `72901e28969f1c2fd5775822238438d6cf4a4d16`.
+- Windows CI run: https://github.com/AIDevRepos/KeeAnywhere/actions/runs/44295365431 — **SUCCESS**. Checked 8 Microsoft.Extensions 2.1.0 assemblies in Release output.
+- **Key regression test:** On Windows PowerShell/.NET Framework, successfully loaded `IdentityModel.OidcClient.dll` and instantiated `IdentityModel.OidcClient.OidcClientOptions` (the constructor path that failed in the user's screenshot). This does not test live Google authorization.
+- CI PLGX: **1,466,324 bytes**; SHA-256 `68C11FA7CB2A54495DB5E20D90ED3FFAEA370E03E9C287F8AFDB8D0EC8888243`; CI source has placeholder Google app credentials.
+- Delivered private OAuth-configured PLGX: `KeeAnywhere-GDrive_2.1.0.3_KeePass-2.62-LoggingFix.plgx` — **1,466,411 bytes**; SHA-256 `37654FAA013B762085435C0079BFAAE9B25EBA2FF3594E980950BAF567CF6F89`.
+- Static validation after OAuth app configuration transfer: 141 file entries, no duplicate or traversal paths, all GZip data streams valid, all eight required `Microsoft.Extensions` assemblies bundled. Only the two Google OAuth app constants were copied from the previously supplied working release; PLGX package UUID regenerated. No credentials were committed to the repository.
+- **Awaiting user runtime validation:** KeePass 2.62 Google Drive restricted authorization, opening a test KDBX, saving changes. The earlier 2.1.0.2 GDrive build is known to fail this authorization path and is not recommended.
