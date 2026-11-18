@@ -41,6 +41,25 @@ jobs:
           if ($null -eq $resource -or $resource.Length -le 0) { throw 'Embedded resource stream missing' }
           $resource.Dispose()
 
+      - name: Check legacy OIDC logging dependencies
+        shell: pwsh
+        run: |
+          $required = @(
+            'Microsoft.Extensions.Configuration.dll',
+            'Microsoft.Extensions.Configuration.Abstractions.dll',
+            'Microsoft.Extensions.Configuration.Binder.dll',
+            'Microsoft.Extensions.DependencyInjection.Abstractions.dll',
+            'Microsoft.Extensions.Logging.dll',
+            'Microsoft.Extensions.Logging.Abstractions.dll',
+            'Microsoft.Extensions.Options.dll',
+            'Microsoft.Extensions.Primitives.dll'
+          )
+          foreach ($name in $required) {
+            $path = Join-Path 'KeeAnywhere/bin/Release' $name
+            if (-not (Test-Path $path)) { throw "Missing OIDC dependency: $name" }
+            Write-Host "Dependency OK: $name"
+          }
+
       - name: Verify artifact and SHA256
         shell: pwsh
         run: |
@@ -54,6 +73,6 @@ jobs:
       - name: Upload PLGX
         uses: actions/upload-artifact@v4
         with:
-          name: KeeAnywhere-GDrive-v2.1.0.2-KeePass262
+          name: KeeAnywhere-GDrive-v2.1.0.3-KeePass262
           path: KeeAnywhere/bin/Release/KeeAnywhere.plgx
           if-no-files-found: error

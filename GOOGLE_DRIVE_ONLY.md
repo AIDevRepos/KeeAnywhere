@@ -92,3 +92,13 @@ The new branch-produced PLGX still needs a KeePass 2.62 runtime test after this 
 - This duplicate-loading cause is distinct from the genuine v2.1.0.1 resource-manifest failure caused by the renamed DLL. That build remains withdrawn; v2.1.0.2 restores the internal `KeeAnywhere` assembly/entry identity and has successful Windows CI/resource checks.
 - **Validation boundary:** user reported that the duplicate-loading issue is resolved; a separate explicit KeePass 2.62 login/open/save test tied to the exact delivered **v2.1.0.2** hash has not been documented. Do not retroactively mark that specific binary fully tested.
 - Keep variant names `KeeAnywhere-LE` and `KeeAnywhere-GDrive` in UI/version metadata; both variants are alternatives and must not be deployed together.
+
+## v2.1.0.3 restricted Google Drive OAuth dependency repair (2026-11-18)
+
+- **User-reported runtime blocker:** While authorizing `Google Drive (restricted)` in KeePass 2.62, `IdentityModel.OidcClient` fails with `FileNotFoundException: Microsoft.Extensions.Logging, Version=2.1.0.0`. This is a real runtime defect, not merely the old duplicate-plugin menu issue.
+- **Confirmed cause:** Earlier Google Drive-only slimming retained the NuGet package declarations but removed the `.csproj` references and PLGX `References/` binaries for the `Microsoft.Extensions` runtime dependencies. The original full Lite PLGX includes them.
+- **Minimal compatible repair:** Restore eight existing `Microsoft.Extensions` 2.1.0 references from the known working Lite v2.1.0 project: Configuration, Configuration.Abstractions, Configuration.Binder, DependencyInjection.Abstractions, Logging, Logging.Abstractions, Options, Primitives. No SDK version upgrades, provider restorations, or changes to Google OAuth application settings.
+- The eight compressed DLL payloads together add about **132 KiB** before PLGX per-entry overhead, keeping the Google Drive-only edition lightweight.
+- Bump GDrive edition assembly/file version to `2.1.0.3` (informational `2.1.0-GDrive.3`), keep the original `KeeAnywhere` internal assembly and resource identity; retain the `KeeAnywhere-GDrive` displayed variant name.
+- CI adds a check that all eight DLLs are present in the Release output. The PLGX bundle must also be checked after the build. **KeePass 2.62 login/open/save behavior awaits new user confirmation**; do not transfer prior runtime PASS to the new version.
+- The full Lite branch was not modified because it already includes these dependencies.
