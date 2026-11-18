@@ -60,6 +60,17 @@ jobs:
             Write-Host "Dependency OK: $name"
           }
 
+      - name: Smoke test OIDC options in .NET Framework
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $folder = (Resolve-Path 'KeeAnywhere/bin/Release').Path
+          $oidc = [System.Reflection.Assembly]::LoadFrom((Join-Path $folder 'IdentityModel.OidcClient.dll'))
+          $type = $oidc.GetType('IdentityModel.OidcClient.OidcClientOptions', $true)
+          $options = [System.Activator]::CreateInstance($type)
+          if ($null -eq $options) { throw 'OIDC options could not be instantiated' }
+          Write-Host 'OIDC options constructor passed with bundled dependencies'
+
       - name: Verify artifact and SHA256
         shell: pwsh
         run: |
